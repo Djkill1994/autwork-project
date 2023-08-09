@@ -1,10 +1,14 @@
 import { FC } from "react";
 import { AppBar, Box, Button, Stack } from "@mui/material";
 import { ReactComponent as Logo } from "../../../public/svg/autwork-logo.svg";
+import { ROUTE_PATHS } from "../../App";
+import { useNavigate } from "react-router-dom";
 
 export const Header: FC = () => {
+  const navigate = useNavigate();
+
   return (
-    <AppBar>
+    <AppBar position="sticky">
       <Stack
         alignItems="center"
         flexDirection="row"
@@ -16,9 +20,18 @@ export const Header: FC = () => {
         <Box m={1}>
           <Logo />
         </Box>
-        <Button color="secondary" variant="contained">
-          Войти
-        </Button>
+        <Stack flexDirection="row" gap={1}>
+          <Button
+            color="secondary"
+            variant="contained"
+            onClick={() => navigate(ROUTE_PATHS.Login, { replace: true })}
+          >
+            Войти
+          </Button>
+          <Button color="secondary" variant="contained">
+            Регистрация
+          </Button>
+        </Stack>
       </Stack>
     </AppBar>
   );

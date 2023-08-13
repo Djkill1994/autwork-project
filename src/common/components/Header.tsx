@@ -28,8 +28,23 @@ export const Header: FC = () => {
           >
             Войти
           </Button>
-          <Button color="secondary" variant="contained">
+          <Button
+            color="secondary"
+            variant="contained"
+            onClick={() =>
+              navigate(ROUTE_PATHS.Registration, { replace: true })
+            }
+          >
             Регистрация
+          </Button>
+          <Button
+            color="secondary"
+            variant="contained"
+            onClick={() =>
+              navigate(ROUTE_PATHS.TimesheetTable, { replace: true })
+            }
+          >
+            Table
           </Button>
         </Stack>
       </Stack>

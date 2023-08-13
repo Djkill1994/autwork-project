@@ -38,7 +38,7 @@ export const LoginPage: FC = () => {
                 style={{ color: "#009e4f", textDecoration: "inherit" }}
               >
                 <Typography fontSize="14px" fontWeight="bolder" mt="20px">
-                  Войти
+                  Регистрация
                 </Typography>
               </Link>
               <Link

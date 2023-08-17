@@ -1,9 +1,6 @@
 import { FC } from "react";
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, IconButton, Stack, Typography } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
-import { Link } from "react-router-dom";
-import { ROUTE_PATHS } from "../../../App";
-import { LoginForm } from "./LoginForm.tsx";
 import { ReactComponent as GoogleLogo } from "../../../../public/svg/google-logo.svg";
 
 export const LoginPage: FC = () => {
@@ -13,9 +10,6 @@ export const LoginPage: FC = () => {
       justifyContent="space-between"
       alignItems="center"
     >
-      <Box>
-        <img alt="img" src="../../../../public/svg/img-work.png" />
-      </Box>
       <Box m="0 auto">
         <Box>
           <Stack mb="20px" alignItems="center">
@@ -30,30 +24,10 @@ export const LoginPage: FC = () => {
             borderRadius="10px"
             padding="30px"
           >
-            <LoginForm />
-            <Stack flexDirection="row-reverse" justifyContent="space-between">
-              <Link
-                to={ROUTE_PATHS.Registration}
-                replace={true}
-                style={{ color: "#009e4f", textDecoration: "inherit" }}
-              >
-                <Typography fontSize="14px" fontWeight="bolder" mt="20px">
-                  Регистрация
-                </Typography>
-              </Link>
-              <Link
-                to={ROUTE_PATHS.Registration}
-                replace={true}
-                style={{ color: "#009e4f", textDecoration: "inherit" }}
-              >
-                <Stack flexDirection="row" alignItems="flex-end" gap={1}>
-                  <GoogleLogo />
-                  <Typography fontSize="14px" fontWeight="bolder" mt="20px">
-                    Log in to google
-                  </Typography>
-                </Stack>
-              </Link>
-            </Stack>
+            <IconButton>
+              <GoogleLogo />
+              Log in witch google
+            </IconButton>
           </Stack>
         </Box>
       </Box>

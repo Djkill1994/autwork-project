@@ -1,4 +1,11 @@
-import { Modal, Paper, Stack, TextField } from "@mui/material";
+import {
+  Button,
+  Modal,
+  Paper,
+  Stack,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { FC } from "react";
 
 interface IProps {
@@ -16,11 +23,18 @@ export const TimesheetModal: FC<IProps> = ({ onClose }) => {
           p: "20px",
         }}
       >
-        <Stack gap={2}>
-          <TextField />
-          <TextField />
-          <TextField />
-          <TextField />
+        <Stack alignItems="center" gap={1}>
+          <Button variant="contained" sx={{ color: "red" }}>
+            Выходной
+          </Button>
+          <Typography>Введите данные</Typography>
+          <Typography>Дата 21.01.2023</Typography>
+          <Stack gap={2}>
+            <TextField color="secondary" label="Время начала работы" />
+            <TextField color="secondary" label="Время обеда" />
+            <TextField color="secondary" label="Время окончания работы" />
+            <TextField color="secondary" label="Место работы" />
+          </Stack>
         </Stack>
       </Paper>
     </Modal>

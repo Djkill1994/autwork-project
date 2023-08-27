@@ -1,9 +1,13 @@
 import { FC } from "react";
-import { Box, IconButton, Stack, Typography } from "@mui/material";
+import { Box, Stack, Typography } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
-import { ReactComponent as GoogleLogo } from "../../../../public/svg/google-logo.svg";
+import { GoogleLogin } from "@react-oauth/google";
+import { useNavigate } from "react-router-dom";
+import { ROUTE_PATHS } from "../../../App";
+import { AUTH_TOKEN_KEY } from "../../../common/constans/localStorage.ts";
 
 export const LoginPage: FC = () => {
+  const navigate = useNavigate();
   return (
     <Stack
       flexDirection="row"
@@ -24,10 +28,18 @@ export const LoginPage: FC = () => {
             borderRadius="10px"
             padding="30px"
           >
-            <IconButton>
-              <GoogleLogo />
-              Log in witch google
-            </IconButton>
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                localStorage.setItem(
+                  AUTH_TOKEN_KEY,
+                  credentialResponse.credential ?? "",
+                );
+                navigate(ROUTE_PATHS.TimesheetTable, { replace: true });
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+            />
           </Stack>
         </Box>
       </Box>

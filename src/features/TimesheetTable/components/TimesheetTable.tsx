@@ -15,9 +15,22 @@ import { FC } from "react";
 import { TimesheetTableHeader } from "./TimesheetTableHeader.tsx";
 import { useModal } from "../../../common/hooks/useModal.ts";
 import { TimesheetModal } from "./TimesheetModal.tsx";
+import { AUTH_TOKEN_KEY } from "../../../common/constans/localStorage.ts";
+import { GoogleSpreadsheet } from "google-spreadsheet";
 
 export const TimesheetTable: FC = () => {
   const { isOpened, open, close } = useModal();
+  const token = localStorage.getItem(AUTH_TOKEN_KEY) ?? "";
+  const doc = new GoogleSpreadsheet(
+    "1ItdFb1i_CgulyzFoBGwxIFSlaox1XE2q/edit#gid=1037623392",
+    { token: token },
+  );
+
+  (async function () {
+    await doc.loadInfo();
+  })();
+  // loadDocum();
+  // console.log(doc.title && "dok title");
   return (
     <Paper sx={{ width: "100%", mb: 2 }}>
       {isOpened && <TimesheetModal onClose={close} />}

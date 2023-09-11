@@ -2,12 +2,26 @@ import { FC } from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import { LockOutlined } from "@mui/icons-material";
 import { GoogleLogin } from "@react-oauth/google";
-import { useNavigate } from "react-router-dom";
-import { ROUTE_PATHS } from "../../../App";
+import jwt_decode from "jwt-decode";
 import { AUTH_TOKEN_KEY } from "../../../common/constans/localStorage.ts";
 
 export const LoginPage: FC = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+
+  const responseGoogle = (response: any) => {
+    //console.log(response);
+    const userObject = jwt_decode(response.credential);
+    console.log(userObject);
+    localStorage.setItem(AUTH_TOKEN_KEY, JSON.stringify(userObject.aud));
+    // const { name, sub, picture } = userObject;
+    // const doc = {
+    //   _id: sub,
+    //   _type: "user",
+    //   userName: name,
+    //   image: picture,
+    // };
+  };
+
   return (
     <Stack
       flexDirection="row"
@@ -29,16 +43,11 @@ export const LoginPage: FC = () => {
             padding="30px"
           >
             <GoogleLogin
-              onSuccess={(credentialResponse) => {
-                localStorage.setItem(
-                  AUTH_TOKEN_KEY,
-                  credentialResponse.credential ?? "",
-                );
-                navigate(ROUTE_PATHS.TimesheetTable, { replace: true });
-              }}
+              onSuccess={responseGoogle}
               onError={() => {
                 console.log("Login Failed");
               }}
+              // cookiePolicy="single_host_origin"
             />
           </Stack>
         </Box>

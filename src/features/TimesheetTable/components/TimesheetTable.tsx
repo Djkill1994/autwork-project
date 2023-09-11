@@ -21,10 +21,10 @@ import { GoogleSpreadsheet } from "google-spreadsheet";
 export const TimesheetTable: FC = () => {
   const { isOpened, open, close } = useModal();
   const token = localStorage.getItem(AUTH_TOKEN_KEY) ?? "";
-  const doc = new GoogleSpreadsheet(
-    "1ItdFb1i_CgulyzFoBGwxIFSlaox1XE2q/edit#gid=1037623392",
-    { token: token },
-  );
+  console.log(token);
+  const doc = new GoogleSpreadsheet("1ItdFb1i_CgulyzFoBGwxIFSlaox1XE2q", {
+    token: token,
+  });
 
   (async function () {
     await doc.loadInfo();
